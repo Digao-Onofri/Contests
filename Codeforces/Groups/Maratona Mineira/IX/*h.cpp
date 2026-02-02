@@ -86,107 +86,140 @@ void add(int posi, int posj, int amount){
 
 void next(int posi, int posj){
     bool first = true;
+    int max = 0;
 
     if((posi >= 0 && posi < l) && (posj - 1 >= 0 && posj - 1 < c)){
         if(first){
+            max = mat[posi][posj - 1];
             maxi = posi;
             maxj = posj - 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi][posj - 1]){
-                maxi = posi;
-                maxj = posj - 1;
+                if(max != mat[posi][posj - 1]){
+                    max = mat[posi][posj - 1];
+                    maxi = posi;
+                    maxj = posj - 1;
+                }
             }
         }
     }
 
     if((posi - 1 >= 0 && posi - 1 < l) && (posj - 1 >= 0 && posj - 1 < c)){
         if(first){
+            max = mat[posi - 1][posj - 1];
             maxi = posi - 1;
             maxj = posj - 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj - 1]){
-                maxi = posi - 1;
-                maxj = posj - 1;
+                if(max != mat[posi - 1][posj - 1]){
+                    max = mat[posi - 1][posj - 1];
+                    maxi = posi - 1;
+                    maxj = posj - 1;
+                }
             }
         }
     }
 
     if((posi - 1 >= 0 && posi - 1 < l) && (posj >= 0 && posj < c)){
         if(first){
+            max = mat[posi - 1][posj];
             maxi = posi - 1;
             maxj = posj;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj]){
-                maxi = posi - 1;
-                maxj = posj;
+                if(max != mat[posi - 1][posj]){
+                    max = mat[posi - 1][posj];
+                    maxi = posi - 1;
+                    maxj = posj;
+                }
             }
         }
     }
     
     if((posi - 1 >= 0 && posi - 1 < l) && (posj + 1 >= 0 && posj + 1 < c)){
         if(first){
+            max = mat[posi - 1][posj + 1];
             maxi = posi - 1;
             maxj = posj + 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj + 1]){
-                maxi = posi - 1;
-                maxj = posj + 1;
+                if(max != mat[posi - 1][posj + 1]){
+                    max = mat[posi - 1][posj + 1];
+                    maxi = posi - 1;
+                    maxj = posj + 1;
+                }
             }
         }
     }
 
     if((posi >= 0 && posi < l) && (posj + 1 >= 0 && posj + 1 < c)){
         if(first){
+            max = mat[posi][posj + 1];
             maxi = posi;
             maxj = posj + 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi][posj + 1]){
-                maxi = posi;
-                maxj = posj + 1;
+                if(max != mat[posi][posj + 1]){
+                    max = mat[posi][posj + 1];
+                    maxi = posi;
+                    maxj = posj + 1;
+                }
             }
         }
     }
 
     if((posi + 1 >= 0 && posi + 1 < l) && (posj + 1 >= 0 && posj + 1 < c)){       
         if(first){
+            max = mat[posi + 1][posj + 1];
             maxi = posi + 1;
             maxj = posj + 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj + 1]){
-                maxi = posi + 1;
-                maxj = posj + 1;
+                if(max != mat[posi + 1][posj + 1]){
+                    max = mat[posi + 1][posj + 1];
+                    maxi = posi + 1;
+                    maxj = posj + 1;
+                }
             }
         }
     }
 
     if((posi + 1 >= 0 && posi + 1 < l) && (posj >= 0 && posj < c)){
         if(first){
+            max = mat[posi + 1][posj];
             maxi = posi + 1;
             maxj = posj;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj]){
-                maxi = posi + 1;
-                maxj = posj;
+                if(max != mat[posi + 1][posj]){
+                    max = mat[posi + 1][posj];
+                    maxi = posi + 1;
+                    maxj = posj;
+                }
             }
         }
     }
 
     if((posi + 1 >= 0 && posi + 1 < l) && (posj - 1 >= 0 && posj - 1 < c)){
         if(first){
+            max = mat[posi + 1][posj - 1];
             maxi = posi + 1;
             maxj = posj - 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj - 1]){
-                maxi = posi + 1;
-                maxj = posj - 1;
+                if(max != mat[posi + 1][posj - 1]){
+                    max = mat[posi + 1][posj - 1];
+                    maxi = posi + 1;
+                    maxj = posj - 1;
+                }
             }
         }
     }
@@ -210,8 +243,10 @@ int main(){
     while(played < l + c + 1){
         pos = 0;
         pos = possible(posi, posj);
+        cout << pos << endl;
 
         amount = mat[posi][posj] / pos;
+        cout << amount << endl;
         add(posi, posj, amount);
         mat[posi][posj] -= amount;
 
@@ -219,6 +254,14 @@ int main(){
         posi = maxi;
         posj = maxj;
         played++;
+        cout << posi << " " << posj << endl;
+        for(i = 0; i < l; i++){
+            for(j = 0; j < c; j++){
+                cout << mat[i][j] << ' ';
+            }
+            cout << endl;
+        }
+        cout << endl;
     }
 
     max = mat[0][0];

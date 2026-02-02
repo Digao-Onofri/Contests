@@ -1,6 +1,7 @@
 /*
     Name: Se liga na cifra
     Link: https://codeforces.com/group/YgJmumGtHD/contest/103794/problem/H
+    nada que eu faço faz com que pegue a posição correta
 */
 
 #include <bits/stdc++.h>
@@ -97,6 +98,7 @@ void next(int posi, int posj){
         } else{
             if(mat[maxi][maxj] < mat[posi][posj - 1]){
                 if(max != mat[posi][posj - 1]){
+                }else{
                     max = mat[posi][posj - 1];
                     maxi = posi;
                     maxj = posj - 1;
@@ -113,7 +115,8 @@ void next(int posi, int posj){
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj - 1]){
-                if(max != mat[posi - 1][posj - 1]){
+                if(max == mat[posi - 1][posj - 1]){
+                }else{
                     max = mat[posi - 1][posj - 1];
                     maxi = posi - 1;
                     maxj = posj - 1;
@@ -130,7 +133,8 @@ void next(int posi, int posj){
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj]){
-                if(max != mat[posi - 1][posj]){
+                if(max == mat[posi - 1][posj]){
+                }else{
                     max = mat[posi - 1][posj];
                     maxi = posi - 1;
                     maxj = posj;
@@ -147,7 +151,8 @@ void next(int posi, int posj){
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj + 1]){
-                if(max != mat[posi - 1][posj + 1]){
+                if(max == mat[posi - 1][posj + 1]){
+                }else{
                     max = mat[posi - 1][posj + 1];
                     maxi = posi - 1;
                     maxj = posj + 1;
@@ -164,7 +169,8 @@ void next(int posi, int posj){
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi][posj + 1]){
-                if(max != mat[posi][posj + 1]){
+                if(max == mat[posi][posj + 1]){
+                }else{
                     max = mat[posi][posj + 1];
                     maxi = posi;
                     maxj = posj + 1;
@@ -181,7 +187,8 @@ void next(int posi, int posj){
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj + 1]){
-                if(max != mat[posi + 1][posj + 1]){
+                if(max == mat[posi + 1][posj + 1]){
+                }else{
                     max = mat[posi + 1][posj + 1];
                     maxi = posi + 1;
                     maxj = posj + 1;
@@ -198,7 +205,8 @@ void next(int posi, int posj){
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj]){
-                if(max != mat[posi + 1][posj]){
+                if(max == mat[posi + 1][posj]){
+                } else{
                     max = mat[posi + 1][posj];
                     maxi = posi + 1;
                     maxj = posj;
@@ -215,7 +223,8 @@ void next(int posi, int posj){
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj - 1]){
-                if(max != mat[posi + 1][posj - 1]){
+                if(max == mat[posi + 1][posj - 1]){
+                } else{
                     max = mat[posi + 1][posj - 1];
                     maxi = posi + 1;
                     maxj = posj - 1;

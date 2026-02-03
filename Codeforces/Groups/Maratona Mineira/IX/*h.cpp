@@ -1,14 +1,13 @@
 /*
-    Name: Se liga na cifra
+    Name: Bagunça da Madalena
     Link: https://codeforces.com/group/YgJmumGtHD/contest/103794/problem/H
-    nada que eu faço faz com que pegue a posição correta
+    wrong answer on test 5
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-
-int mat[510][510], l, c;
+long long int mat[510][510], l, c;
 int maxi, maxj;
 
 int possible(int posi, int posj){
@@ -87,156 +86,115 @@ void add(int posi, int posj, int amount){
 
 void next(int posi, int posj){
     bool first = true;
-    int max = 0;
 
     if((posi >= 0 && posi < l) && (posj - 1 >= 0 && posj - 1 < c)){
         if(first){
-            max = mat[posi][posj - 1];
             maxi = posi;
             maxj = posj - 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi][posj - 1]){
-                if(max != mat[posi][posj - 1]){
-                }else{
-                    max = mat[posi][posj - 1];
-                    maxi = posi;
-                    maxj = posj - 1;
-                }
+                maxi = posi;
+                maxj = posj - 1;
             }
         }
     }
 
     if((posi - 1 >= 0 && posi - 1 < l) && (posj - 1 >= 0 && posj - 1 < c)){
         if(first){
-            max = mat[posi - 1][posj - 1];
             maxi = posi - 1;
             maxj = posj - 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj - 1]){
-                if(max == mat[posi - 1][posj - 1]){
-                }else{
-                    max = mat[posi - 1][posj - 1];
-                    maxi = posi - 1;
-                    maxj = posj - 1;
-                }
+                maxi = posi - 1;
+                maxj = posj - 1;
             }
         }
     }
 
     if((posi - 1 >= 0 && posi - 1 < l) && (posj >= 0 && posj < c)){
         if(first){
-            max = mat[posi - 1][posj];
             maxi = posi - 1;
             maxj = posj;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj]){
-                if(max == mat[posi - 1][posj]){
-                }else{
-                    max = mat[posi - 1][posj];
-                    maxi = posi - 1;
-                    maxj = posj;
-                }
+                maxi = posi - 1;
+                maxj = posj;
             }
         }
     }
     
     if((posi - 1 >= 0 && posi - 1 < l) && (posj + 1 >= 0 && posj + 1 < c)){
         if(first){
-            max = mat[posi - 1][posj + 1];
             maxi = posi - 1;
             maxj = posj + 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi - 1][posj + 1]){
-                if(max == mat[posi - 1][posj + 1]){
-                }else{
-                    max = mat[posi - 1][posj + 1];
-                    maxi = posi - 1;
-                    maxj = posj + 1;
-                }
+                maxi = posi - 1;
+                maxj = posj + 1;
             }
         }
     }
 
     if((posi >= 0 && posi < l) && (posj + 1 >= 0 && posj + 1 < c)){
         if(first){
-            max = mat[posi][posj + 1];
             maxi = posi;
             maxj = posj + 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi][posj + 1]){
-                if(max == mat[posi][posj + 1]){
-                }else{
-                    max = mat[posi][posj + 1];
-                    maxi = posi;
-                    maxj = posj + 1;
-                }
+                maxi = posi;
+                maxj = posj + 1;
             }
         }
     }
 
     if((posi + 1 >= 0 && posi + 1 < l) && (posj + 1 >= 0 && posj + 1 < c)){       
         if(first){
-            max = mat[posi + 1][posj + 1];
             maxi = posi + 1;
             maxj = posj + 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj + 1]){
-                if(max == mat[posi + 1][posj + 1]){
-                }else{
-                    max = mat[posi + 1][posj + 1];
-                    maxi = posi + 1;
-                    maxj = posj + 1;
-                }
+                maxi = posi + 1;
+                maxj = posj + 1;
             }
         }
     }
 
     if((posi + 1 >= 0 && posi + 1 < l) && (posj >= 0 && posj < c)){
         if(first){
-            max = mat[posi + 1][posj];
             maxi = posi + 1;
             maxj = posj;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj]){
-                if(max == mat[posi + 1][posj]){
-                } else{
-                    max = mat[posi + 1][posj];
-                    maxi = posi + 1;
-                    maxj = posj;
-                }
+                maxi = posi + 1;
+                maxj = posj;
             }
         }
     }
 
     if((posi + 1 >= 0 && posi + 1 < l) && (posj - 1 >= 0 && posj - 1 < c)){
         if(first){
-            max = mat[posi + 1][posj - 1];
             maxi = posi + 1;
             maxj = posj - 1;
             first = false;
         } else{
             if(mat[maxi][maxj] < mat[posi + 1][posj - 1]){
-                if(max == mat[posi + 1][posj - 1]){
-                } else{
-                    max = mat[posi + 1][posj - 1];
-                    maxi = posi + 1;
-                    maxj = posj - 1;
-                }
+                maxi = posi + 1;
+                maxj = posj - 1;
             }
         }
     }
-
 }
 
 int main(){
-    int i, j, amount, max;
+    long long int amount;
+    int i, j, max;
     int posi, posj, pos;
     int played = 0;
 
@@ -248,29 +206,28 @@ int main(){
         }
     }
 
+    //if just one pos is possible don`t pass because of division by zero
+    if(l == 1 && c == 1){
+        cout << mat[0][0] << endl;
+        return 0;
+    }
+
     cin >> posi >> posj;
+    posi--;
+    posj--;
+    //very important to reduce because the input consider first position as 1 1 
     while(played < l + c + 1){
         pos = 0;
         pos = possible(posi, posj);
-        cout << pos << endl;
 
-        amount = mat[posi][posj] / pos;
-        cout << amount << endl;
+        amount = mat[posi][posj] / pos; 
         add(posi, posj, amount);
-        mat[posi][posj] -= amount;
+        mat[posi][posj] -= (amount * pos);
 
         next(posi, posj);
         posi = maxi;
         posj = maxj;
         played++;
-        cout << posi << " " << posj << endl;
-        for(i = 0; i < l; i++){
-            for(j = 0; j < c; j++){
-                cout << mat[i][j] << ' ';
-            }
-            cout << endl;
-        }
-        cout << endl;
     }
 
     max = mat[0][0];

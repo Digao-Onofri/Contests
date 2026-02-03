@@ -7,13 +7,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef struct{double x, y;}Ponto;
+typedef struct{int x, y;}Ponto;
 
 //Função para calcular o produto vetorial
 double crossProduct(Ponto a, Ponto b){
     return a.x * b.y - a.y * b.x;
 }
 
+//Ponto p1 é uma aresta e p2 tambem
 bool doIntersect(Ponto p1, Ponto p2, Ponto p3, Ponto p4){
     double d1 = crossProduct({p3.x - p1.x, p3.y - p1.y}, {p2.x - p1.x, p2.y - p1.y});
     double d2 = crossProduct({p4.x - p1.x, p4.y - p1.y}, {p2.x - p1.x, p2.y - p1.y});
@@ -26,6 +27,18 @@ bool doIntersect(Ponto p1, Ponto p2, Ponto p3, Ponto p4){
 int main(){
     int dots;
     int x, y;
+    int posx, posy;
+    vector<Ponto> all;
+
+    cin >> dots;
+    while(dots--){
+        cin >> x >> y;
+        all.push_back({x, y});
+    }
+
+    cin >> posx >> posy;
+
+
 
     return 0;
 }

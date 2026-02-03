@@ -1,15 +1,15 @@
 /*
     Name: Se liga na cifra
     Link: https://codeforces.com/group/YgJmumGtHD/contest/103794/problem/C
-    Wrong answer on test 21
+    Tinha errado por causa de long long
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-vector <int> vet, memo;
+vector <long long int> vet, memo;
 
-int calc(int size){
+long long int calc(int size){
     int i;
 
     memo.push_back(vet[0]);
@@ -22,7 +22,8 @@ int calc(int size){
 }
 
 int main(){
-    int size, i, value;
+    long long int value;
+    int size, i;
     
     cin >> size;
     for(i = 0; i < size; i++){

@@ -4,38 +4,52 @@
 */
 
 #include <bits/stdc++.h>
+#define n 410
 using namespace std;
 
-int mat[410][410];
+int mat[n][n], memoc[n][n], memol[n][n];
  
 int main(){
     long long int time;
-    int r, c, side, cities;
-    int posx, posy;
-    bool colapsed = false;
+    int r, c, side, cities, value;
+    int posx, posy, i, j, l, res;
 
     memset(mat, 0, sizeof(mat));
+    memset(memoc, 0, sizeof(memoc));
+    memset(memol, 0, sizeof(memol));
 
     cin >> r >> c >> side >> cities;
 
     while(cities--){
         cin >> posx >> posy >> time;
-        mat[posx][posy] = 1;
-        if(!colapsed && check(posx, posy, side)){
-            cout << time << endl;
-            colapsed = true;
+        mat[posx - 1][posy - 1] = time;
+    }
+
+    for(i = 0; i < r; i++){
+        for(j = 0; j < c + side; j++){
+            value = 0;
+            for(l = 0; l < side; l++){
+                value = max(value, mat[i][j + l]);
+            }
+            memoc[i][j] = value;
         }
     }
 
-    if(!colapsed){
+    for(i = 0; i < r + side; i++){
+        for(j = 0; j < c + side; j++){
+            value = 0;
+            for(l = 0; l < side; l++){
+                value = max(value, memoc[i + l][j]);
+            }
+            memol[i][j] = value;
+            res = min(res, memol[i][j]);
+        }
+    }
+
+    if(res == 0){
         cout << -1 << endl;
-    }
-
-    for(int i = 1; i <= r; i++){
-        for(int j = 1; j <= c; j++){
-            cout << mat[i][j] << " ";
-        }
-        cout << endl;
+    } else{
+        cout << res << endl;
     }
 
     return 0;

@@ -1,6 +1,6 @@
 /*
-    Name: Cut
-    Link: https://codeforces.com/group/Ohoz9kAFjS/contest/266572/problem/B
+    Name: Monotonicity
+    Link: https://codeforces.com/group/Ohoz9kAFjS/contest/266572/problem/D
 */
 
 #include <bits/stdc++.h>
@@ -10,7 +10,7 @@ using namespace std;
 
 struct edge{
     int to;
-    int cap;
+    unsigned long long int cap;
 };
 
 vector<int> g[MAX];
@@ -75,7 +75,7 @@ int fordFulkerson(int ini, int fim){
     while (BFS(ini, fim)){
         bot = INF;
         for (v = fim; v != ini; v = anterior[v]){
-            bot = min(bot, edges[aresta[v]].cap);
+            bot = min((unsigned long long int) bot, edges[aresta[v]].cap);
         }
         for (v = fim; v != ini; v = anterior[v]){
             edges[aresta[v]].cap -= bot; 
@@ -88,7 +88,7 @@ int fordFulkerson(int ini, int fim){
 
 }
 
-void addEdge(int a, int b, int cap){
+void addEdge(int a, int b, unsigned long long int cap){
     g[a].push_back(edges.size());
     edges.push_back({b, cap});
     g[b].push_back(edges.size());
@@ -96,18 +96,40 @@ void addEdge(int a, int b, int cap){
 }
 
 int main(){
-    int nodes, pipes, a, b, cap;
+    int vectors, dimension;
+    int i, j, k;
+    int value, sum, sum1;
+    bool first;
 
-    cin >> nodes >> pipes;
+    cin >> vectors >> dimension;
 
-    while(pipes--){
-        cin >> a >> b >> cap;
-        addEdge(a, b, cap);
+    first = true;
+    for(j = 1; j <= vectors; j++){
+        sum = 0;
+        for(i = dimension; i >= 0; i--){
+            cin >> value;
+            if(value == 1){
+                sum += pow(2, i);
+            }
+        }
+
+        if(first == true){
+            addEdge(-1, j, 1);
+        }
+        if(first != true && sum1 < sum){
+            addEdge(j, k, INF);
+        }
+        
+        first = false;
+        sum1 = sum;
+        k = j;
     }
 
-    int mflow = fordFulkerson(1, nodes);
-    cout << minCut(nodes) << " " << mflow << endl;
+    addEdge(-2, vectors, 1);
 
+    int mflow = fordFulkerson(-1, -2);
+    cout << minCut(vectors) << " " << mflow << endl;    
+    
     for(auto i: arestas){
         cout << i << " ";
     }

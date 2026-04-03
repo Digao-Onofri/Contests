@@ -1,34 +1,17 @@
 /*
-    Name: Cut
-    Link: https://codeforces.com/group/Ohoz9kAFjS/contest/266572/problem/B
+    Name: Monotonicity
+    Link: https://codeforces.com/group/Ohoz9kAFjS/contest/266572/problem/D
 */
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 #include <bits/stdc++.h>
 #define MAX 110
 #define INF 0x3f3f3f3f
 using namespace std;
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 struct edge{
     int to;
-    int cap;
+    unsigned long long int cap;
 };
-<<<<<<< HEAD
- 
-vector<int> g[MAX];
-vector<edge> edges;
-vector<edge>::iterator it;
- 
-int vis[MAX], anterior[MAX], aresta[MAX];
- 
-=======
 
 vector<int> g[MAX];
 vector<edge> edges;
@@ -36,7 +19,6 @@ vector<edge>::iterator it;
 
 int vis[MAX], anterior[MAX], aresta[MAX];
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 int BFS(int ini, int fim){ // 1 se tiver caminho, 0 caso nao
     queue<int> fila;
     memset(vis, 0, sizeof(vis));
@@ -60,11 +42,7 @@ int BFS(int ini, int fim){ // 1 se tiver caminho, 0 caso nao
     }
     return 0;
 }
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 set<int> a, b, arestas;
 int minCut(int nodes){
     int count = 0;
@@ -75,11 +53,7 @@ int minCut(int nodes){
             b.insert(i);
         }
     }
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     for(auto i: a){
         for(auto j: g[i]){
             if(b.find(edges[j].to) != b.end()){
@@ -89,96 +63,77 @@ int minCut(int nodes){
             }
         }
     }
-<<<<<<< HEAD
- 
-    return count;
-}
- 
-int fordFulkerson(int ini, int fim){
-    int u, v;
-=======
 
     return count;
 }
 
 int fordFulkerson(int ini, int fim){
     int v;
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     int fluxo = 0;
     int bot;
     
     while (BFS(ini, fim)){
         bot = INF;
         for (v = fim; v != ini; v = anterior[v]){
-            bot = min(bot, edges[aresta[v]].cap);
+            bot = min((unsigned long long int) bot, edges[aresta[v]].cap);
         }
         for (v = fim; v != ini; v = anterior[v]){
-<<<<<<< HEAD
-            u = anterior[v];
-=======
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
             edges[aresta[v]].cap -= bot; 
             edges[aresta[v]^1].cap += bot; 
         }
         fluxo += bot;
     }
-<<<<<<< HEAD
- 
-    return fluxo;
- 
-}
- 
-=======
 
     return fluxo;
 
 }
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
-void addEdge(int a, int b, int cap){
+void addEdge(int a, int b, unsigned long long int cap){
     g[a].push_back(edges.size());
     edges.push_back({b, cap});
     g[b].push_back(edges.size());
     edges.push_back({a, cap});
 }
-<<<<<<< HEAD
- 
-int main(){
-    int nodes, pipes, a, b, cap;
- 
-    cin >> nodes >> pipes;
- 
-=======
 
 int main(){
-    int nodes, pipes, a, b, cap;
+    int vectors, dimension;
+    int i, j, k;
+    int value, sum, sum1;
+    bool first;
 
-    cin >> nodes >> pipes;
+    cin >> vectors >> dimension;
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
-    while(pipes--){
-        cin >> a >> b >> cap;
-        addEdge(a, b, cap);
+    first = true;
+    for(j = 1; j <= vectors; j++){
+        sum = 0;
+        for(i = dimension; i >= 0; i--){
+            cin >> value;
+            if(value == 1){
+                sum += pow(2, i);
+            }
+        }
+
+        if(first == true){
+            addEdge(-1, j, 1);
+        }
+        if(first != true && sum1 < sum){
+            addEdge(j, k, INF);
+        }
+        
+        first = false;
+        sum1 = sum;
+        k = j;
     }
-<<<<<<< HEAD
- 
-    int mflow = fordFulkerson(1, nodes);
-    cout << minCut(nodes) << " " << mflow << endl;
- 
-=======
 
-    int mflow = fordFulkerson(1, nodes);
-    cout << minCut(nodes) << " " << mflow << endl;
+    addEdge(-2, vectors, 1);
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
+    int mflow = fordFulkerson(-1, -2);
+    cout << minCut(vectors) << " " << mflow << endl;    
+    
     for(auto i: arestas){
         cout << i << " ";
     }
     cout << endl;
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     return 0;
 }

@@ -1,7 +1,6 @@
 /*
-    Name: Se liga na cifra
+    Name: Caindo na estrada
     Link: https://codeforces.com/group/YgJmumGtHD/contest/103794/problem/C
-    Tinha errado por causa de long long
 */
 
 #include <bits/stdc++.h>

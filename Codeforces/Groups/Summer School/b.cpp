@@ -2,33 +2,14 @@
     Name: Cut
     Link: https://codeforces.com/group/Ohoz9kAFjS/contest/266572/problem/B
 */
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 #include <bits/stdc++.h>
 #define MAX 110
 #define INF 0x3f3f3f3f
 using namespace std;
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 struct edge{
     int to;
     int cap;
 };
-<<<<<<< HEAD
- 
-vector<int> g[MAX];
-vector<edge> edges;
-vector<edge>::iterator it;
- 
-int vis[MAX], anterior[MAX], aresta[MAX];
- 
-=======
 
 vector<int> g[MAX];
 vector<edge> edges;
@@ -36,7 +17,6 @@ vector<edge>::iterator it;
 
 int vis[MAX], anterior[MAX], aresta[MAX];
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 int BFS(int ini, int fim){ // 1 se tiver caminho, 0 caso nao
     queue<int> fila;
     memset(vis, 0, sizeof(vis));
@@ -60,11 +40,6 @@ int BFS(int ini, int fim){ // 1 se tiver caminho, 0 caso nao
     }
     return 0;
 }
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 set<int> a, b, arestas;
 int minCut(int nodes){
     int count = 0;
@@ -75,11 +50,6 @@ int minCut(int nodes){
             b.insert(i);
         }
     }
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     for(auto i: a){
         for(auto j: g[i]){
             if(b.find(edges[j].to) != b.end()){
@@ -89,21 +59,12 @@ int minCut(int nodes){
             }
         }
     }
-<<<<<<< HEAD
- 
-    return count;
-}
- 
-int fordFulkerson(int ini, int fim){
-    int u, v;
-=======
 
     return count;
 }
 
 int fordFulkerson(int ini, int fim){
     int v;
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     int fluxo = 0;
     int bot;
     
@@ -113,72 +74,39 @@ int fordFulkerson(int ini, int fim){
             bot = min(bot, edges[aresta[v]].cap);
         }
         for (v = fim; v != ini; v = anterior[v]){
-<<<<<<< HEAD
-            u = anterior[v];
-=======
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
             edges[aresta[v]].cap -= bot; 
             edges[aresta[v]^1].cap += bot; 
         }
         fluxo += bot;
     }
-<<<<<<< HEAD
- 
-    return fluxo;
- 
-}
- 
-=======
 
     return fluxo;
 
 }
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
 void addEdge(int a, int b, int cap){
     g[a].push_back(edges.size());
     edges.push_back({b, cap});
     g[b].push_back(edges.size());
     edges.push_back({a, cap});
 }
-<<<<<<< HEAD
- 
-int main(){
-    int nodes, pipes, a, b, cap;
- 
-    cin >> nodes >> pipes;
- 
-=======
 
 int main(){
     int nodes, pipes, a, b, cap;
 
     cin >> nodes >> pipes;
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     while(pipes--){
         cin >> a >> b >> cap;
         addEdge(a, b, cap);
     }
-<<<<<<< HEAD
- 
-    int mflow = fordFulkerson(1, nodes);
-    cout << minCut(nodes) << " " << mflow << endl;
- 
-=======
 
     int mflow = fordFulkerson(1, nodes);
     cout << minCut(nodes) << " " << mflow << endl;
 
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     for(auto i: arestas){
         cout << i << " ";
     }
     cout << endl;
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> bb7f0c2eff11e6d42361ad85033fce668a4faec4
     return 0;
 }

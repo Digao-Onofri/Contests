@@ -2,12 +2,10 @@
     Name: Cut
     Link: https://codeforces.com/group/Ohoz9kAFjS/contest/266572/problem/B
 */
-
 #include <bits/stdc++.h>
 #define MAX 110
 #define INF 0x3f3f3f3f
 using namespace std;
-
 struct edge{
     int to;
     int cap;
@@ -42,7 +40,6 @@ int BFS(int ini, int fim){ // 1 se tiver caminho, 0 caso nao
     }
     return 0;
 }
-
 set<int> a, b, arestas;
 int minCut(int nodes){
     int count = 0;
@@ -53,7 +50,6 @@ int minCut(int nodes){
             b.insert(i);
         }
     }
-
     for(auto i: a){
         for(auto j: g[i]){
             if(b.find(edges[j].to) != b.end()){
@@ -112,6 +108,5 @@ int main(){
         cout << i << " ";
     }
     cout << endl;
-
     return 0;
 }
